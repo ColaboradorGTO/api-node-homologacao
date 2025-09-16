@@ -1,46 +1,28 @@
-export const dataFormatada = (date) => {
-  if (!date) return '';
-  // Se a data vier no formato 'yyyy-mm-dd hh:mm:ss.sss'
-  if (typeof date === 'string' && date.match(/^\d{4}-\d{2}-\d{2}/)) {
-    // Extrai apenas a parte da data
-    const [ano, mes, dia] = date.split(' ')[0].split('-');
-    return `${dia}/${mes}/${ano}`;
-  }
-  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  const formattedDate = new Date(date).toLocaleDateString('pt-BR', options);
-  return formattedDate;
+import { format, parse, parseJSON, parseISO } from 'date-fns';
+
+export const dataFormatada = (value) => {
+    if (typeof value !== 'string') {
+        return value;
+    }
+
+    const formatosDeData = [
+        "yyyy-MM-dd HH:mm:ss", // Formato esperado na URL
+        "yyyy-MM-dd HH:mm", // Adicione outros formatos conforme necessário
+        // Adicione mais formatos de data se forem esperados outros formatos na URL
+    ];
+
+    for (const formato of formatosDeData) {
+        try {
+            const parseData = parse(value, formato, new Date());
+            if (parseData instanceof Date && !isNaN(parseData)) {
+                return format(parseData, 'yyyy-MM-dd HH:mm:ss');
+            }
+        } catch (error) {
+            // Ignorar erros de análise e tentar próximo formato, se houver
+        }
+    }
+
+    return value; // Retorna o próprio valor se não foi possível fazer o parse
 };
 
-export const dataHoraFormatada = (date) => {
-  const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-  const formattedDateTime = new Date(date).toLocaleString('pt-BR', options);
-  return formattedDateTime;
-};
 
-export const formatarDataDTW = (data) => {
-  if (!data) return '';
-
-  // Verifica se a data está no formato ISO 8601
-  if (data.includes('T')) {
-      const dataObj = new Date(data);
-      return `${dataObj.getFullYear()}${('0' + (dataObj.getMonth() + 1)).slice(-2)}${('0' + dataObj.getDate()).slice(-2)}`;
-  }
-
-  // Verifica se a data está no formato yyyy-mm-dd
-  if (data.includes('-')) {
-      return data.replace(/-/g, '');
-  }
-
-  // Verifica se a data está no formato dd/mm/yyyy
-  if (data.includes('/')) {
-      const partes = data.split(' ')[0].split('/');
-      return `${partes[2]}${partes[1]}${partes[0]}`;
-  }
-
-  return '';
-}
-
-export const  formatMesAnoDTW = (date) => {
-  const [day, month, year] = date.split("/"); 
-  return `${month}/${year}`;
-}
