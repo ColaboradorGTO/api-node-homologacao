@@ -87,7 +87,6 @@ class VendasControllers {
         idGrupoGrade = idGrupoGrade ? idGrupoGrade : '';
         idGrade = idGrade ? idGrade : '';
         try {
-            numPage = 1;
             const apiUrl = `${url}/api/venda/movimentacao-saldo.xsjs?page=&dataInicio=${dataPesquisaInicio}&dataFim=${dataPesquisaFim}&idGrupoEmpresarial=${idGrupoEmpresarial}&idEmpresa=${idEmpresa}&descricaoProduto=${produtoPesquisado}&uf=${ufPesquisa}&idFornecedor=${idFornecedor}&idGrupoGrade=${idGrupoGrade}&idGrade=${idGrade}`
 
             const response = await axios.get(apiUrl)

@@ -33,6 +33,18 @@ class CormercialControllers {
         }
     }
 
+    async getParceiroNegocio(req, res){
+        let {} = req.query;
+        try{
+            const apiUrl = `${url}/api/produto-sap/parceiro-negocio.xsjs`;
+            const response = await axios.get(apiUrl);
+
+            return res.json(response.data)
+        }catch(error){
+            console.error("erro no comercialControllers.getParceiroNegocio:", error)
+        }
+    }
+   
     async getListaGrupoProduto(req, res) {
         let { idEmpresa } = req.query;
 

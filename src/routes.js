@@ -485,7 +485,7 @@ routes.post('/resumo-ordem-transferencia', ExpedicaoControllers.putResumoOrdemTr
 // routes.get('/listaVendas', FinanceiroVendasControllers.getListaVendas)
 
 // routes.get('/listaVendaCliente', Vendas.getListaVendaCliente)
-routes.get('/movimentacaoSaldo', VendasControllers.getListaVendasSaldo)
+routes.get('/movimentacao-saldo', VendasControllers.getListaVendasSaldo)
 routes.get('/rotatividadeVendas', VendasControllers.getListaRotatividade)
 routes.get('/listaDetalheVendaCliente', VendasControllers.getListaDetalheVendaCliente)
 routes.get('/venda-xml', VendasControllers.getListaVendaXML)
@@ -514,6 +514,7 @@ routes.post('/auth-funcionario-update-voucher', ResumoVoucherControllers.postAut
 
 // Comercial
 routes.get('/listaProdutoSap', ComercialControllers.getListaProdutoSap)
+routes.get("/parceiro-negocio", ComercialControllers.getParceiroNegocio)
 routes.get('/listaEmpresaComercial', ComercialControllers.getListaEmpresaComercial)
 // routes.get('/listaVendasPorProduto', ComercialControllers.getListaVendasEstruturaProdutos)
 routes.get('/vendaMarcaPeriodoFinanceiro', ComercialControllers.getListaVendasMarcaPorPeriodoComercial)
