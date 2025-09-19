@@ -120,6 +120,7 @@ class ProdutoControllers  {
         pageSize = pageSize ? pageSize : '';
     
         try {   
+            
             const apiUrl = `${url}/api/produto.xsjs?idEmpresa=${idEmpresa}&byId=${idProduto}&dsProduto=${dsProduto}&codeBars=${codBarras}&page=${page}&pageSize=${pageSize}`;
             const response = await axios.get(apiUrl)
             return res.json(response.data); // Retorna

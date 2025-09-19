@@ -264,8 +264,11 @@ class InformaticaControllers {
             noFuncionarioCPF = noFuncionarioCPF ? noFuncionarioCPF : '';
             page = page ? page : '';
             pageSize = pageSize ? pageSize : '';
+            
+            
             // http://164.152.245.77:8000/quality/concentrador_homologacao/api/informatica/funcionario-loja.xsjs?pagesize=1000&idEmpresa=&dsNomeFunc=
-            const apiUrl = `${url}/api/informatica/funcionario-loja.xsjs?byId=${byId}&idEmpresa=${idEmpresa}&dsNomeFunc=${noFuncionarioCPF}&page=${page}&pagesize=${pageSize}`;
+           
+            const apiUrl = `${url}/api/comercial/colaborador-produtos-vendidos.xsjs?byId=${byId}&idEmpresa=${idEmpresa}&dsNomeFunc=${noFuncionarioCPF}&page=${page}&pagesize=${pageSize}`;
             const response = await axios.get(apiUrl)
 
             // const response = await getFuncionariosLoja(byId, idEmpresa, cpf, noFuncionarioCPF, page, pageSize)

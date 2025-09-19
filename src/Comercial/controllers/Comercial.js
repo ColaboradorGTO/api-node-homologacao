@@ -231,16 +231,17 @@ class CormercialControllers {
     }
 
     async getListaVendasMarcaPorPeriodoComercial(req, res) {
-        let { idMarcaPesqVenda, page, pageSize, dataPesqInicio, dataPesqFim } = req.query;
+        let { idMarca, page, pageSize, dataPesquisaInicio, dataPesquisaFim } = req.query;
     
-            idMarcaPesqVenda = idMarcaPesqVenda ? idMarcaPesqVenda : '';
-            dataPesqInicio = dataFormatada(dataPesqInicio) ? dataFormatada(dataPesqInicio) : ''
-            dataPesqFim = dataFormatada(dataPesqFim) ? dataFormatada(dataPesqFim) : ''
+            idMarca = idMarca ? idMarca : '';
+            dataPesquisaInicio = dataFormatada(dataPesquisaInicio) ? dataFormatada(dataPesquisaInicio) : ''
+            dataPesquisaFim = dataFormatada(dataPesquisaFim) ? dataFormatada(dataPesquisaFim) : ''
             pageSize = pageSize ? pageSize : '';
-            pageSize = pageSize ? pageSize : '';
+            page = page ? page : '';
+            
 
           try {
-            const apiUrl = `${url}/api/comercial/venda-marca-periodo.xsjs?pageSize=${pageSize}&idMarca=${idMarcaPesqVenda}&dataInicio=${dataPesqInicio}&dataFim=${dataPesqFim}`
+            const apiUrl = `${url}/api/comercial/venda-marca-periodo.xsjs?pageSize=${pageSize}&idMarca=${idMarca}&dataInicio=${dataPesquisaInicio}&dataFim=${dataPesquisaFim}`
             const response = await axios.get(apiUrl)
     
             return res.json(response.data); // Retorna
@@ -307,7 +308,10 @@ class CormercialControllers {
     
         try {
             // ajaxGet('api/comercial/vendas-estoque-produto.xsjs?page='+numPage+'&dataPesquisaInicio=' + datapesqinicio + '&dataPesquisaFim=' + datapesqfim + '&dataPesquisaInicioB=' + datapesqinicioB + '&dataPesquisaFimB=' + datapesqfimB + '&dataPesquisaInicioC=' + datapesqinicioC + '&dataPesquisaFimC=' + datapesqfimC + '&descricaoProduto=' + ProdutoPesqVenda + '&idFornecedor=' + IDForn+ '&idGrupoGrade=' + IDGrupo+ '&idGrade=' + IDGrade + '&idMarcaProduto='+IDMarca)
-            const apiUrl = `${url}/api/comercial/vendas-estoque-produto.xsjs?page=&dataPesquisaInicio=${dataPesquisaInicio}&dataPesquisaFim=${dataPesquisaFim}&dataPesquisaInicioB=${dataPesquisaInicioB}&dataPesquisaFimB${dataPesquisaFimB}&dataPesquisaInicioC=${dataPesquisaInicioC}&dataPesquisaFimC=${dataPesquisaFimC}&descricaoProduto=${descricaoProduto}&idFornecedor=${idFornecedor}&idGrupoGrade=${idGrupo}&idGrade=${idGrade}&idMarcaProduto=${idMarcaProduto}`
+          
+          //http://164.152.245.77:8000/quality/concentrador/api/contabilidade/venda-estoque-produto.xsjs?page=1&dataInicio=2025-09-17&dataFim=2025-09-17&idGrupoEmpresarial=1&descricaoProduto=&idFornecedor=&idGrupoGrade=&idGrade=
+            
+          const apiUrl = `${url}/api/comercial/vendas-estoque-produto.xsjs?page=&dataPesquisaInicio=${dataPesquisaInicio}&dataPesquisaFim=${dataPesquisaFim}&dataPesquisaInicioB=${dataPesquisaInicioB}&dataPesquisaFimB${dataPesquisaFimB}&dataPesquisaInicioC=${dataPesquisaInicioC}&dataPesquisaFimC=${dataPesquisaFimC}&descricaoProduto=${descricaoProduto}&idFornecedor=${idFornecedor}&idGrupoGrade=${idGrupo}&idGrade=${idGrade}&idMarcaProduto=${idMarcaProduto}`
             const response = await axios.get(apiUrl)
             return res.json(response.data); 
         } catch (error) {
@@ -433,6 +437,7 @@ class CormercialControllers {
         
         try {
             // ajaxGetComAnimacaoDeCarregamento(`api/comercial/lista-premiacoes.xsjs?page=${numPage}`)
+            
             const apiUrl = `${url}/api/comercial/lista-premiacoes.xsjs?page=1`;
             const response = await axios.get(apiUrl)
 
