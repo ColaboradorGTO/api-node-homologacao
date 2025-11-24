@@ -19,7 +19,7 @@ class App {
     middlewares() {
         this.server.use(cors({
             // origin: ['http://164.152.245.77:8000', 'http://localhost:5173'],
-            // origin: ['http://localhost:5173'],
+            
             origin: ['https://api-node-homologacao.vercel.app', 'https://quality-homologacao-react-tjdn.vercel.app'],
             credentials: true,
             timeout: 50000,
